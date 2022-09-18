@@ -63,8 +63,7 @@ function pagination(jsonData, nowPage) {
     hasNext: currentPage < pageTotal
   }; // console.log(page);
 
-  displayData(data);
-  pageBtn(page);
+  displayData(data); //pageBtn(page);
 } // 將卡片資料渲染到頁面上
 
 
