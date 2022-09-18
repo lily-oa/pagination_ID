@@ -111,39 +111,3 @@ function displayData(data){
   content.innerHTML = str;
 }
 
-function pageBtn(page){
-  let str = '';
-  const total = page.pageTotal;
-  
-  if(page.hasPage){
-    str += `<li class="page-item"><a class='page-link' href='#' data-page="${Number(page.currentPage)-1}">Previous</a></li>`;
-  }else{
-    str += `<li class="page-item disabled"><span class="page-link">Previous</span></li>`;
-  }
-
-  for(let i=1; i<=total; i++){
-    if(Number(page.currentPage)===i){
-      str += `<li class="page-item active"><a class='page-link' href='#' data-page="${i}">${i}</a></li>`;
-    }else{
-      str += `<li class="page-item"><a class='page-link' href='#' data-page="${i}">${i}</a></li>`;
-    }
-  };
-  
-
-  if(page.hasNext){
-    str += `<li class="page-item"><a class='page-link' href='#' data-page="${Number(page.currentPage)+1}">Next</a></li>`;
-  }else{
-    str += `<li class="page-item disabled"><span class="page-link">Next</span></li>`;
-  }
-  pageid.innerHTML = str;
-  
-}
-
-function switchPage(e){
-  e.preventDefault();
-  if(e.target.nodeName !== 'A'){return;}
-  const page = e.target.dataset.page;
-  pagination(jsonData, page);
-}
-
-pageid.addEventListener('click', switchPage);
