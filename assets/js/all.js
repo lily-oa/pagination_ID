@@ -1,7 +1,7 @@
 "use strict";
 
 var jsonUrl = 'https://raw.githubusercontent.com/hexschool/KCGTravel/master/datastore_search.json';
-var content = document.getElementById('content');
+var content = document.querySelector('.content');
 var pageid = document.getElementById('pageid');
 var jsonData = {}; //這邊不管是用陣列[]或是用物件{}都可以
 
@@ -75,46 +75,4 @@ function displayData(data) {
   });
   content.innerHTML = str;
 }
-
-function pageBtn(page) {
-  var str = '';
-  var total = page.pageTotal;
-
-  if (page.hasPage) {
-    str += "<li class=\"page-item\"><a class='page-link' href='#' data-page=\"".concat(Number(page.currentPage) - 1, "\">Previous</a></li>");
-  } else {
-    str += "<li class=\"page-item disabled\"><span class=\"page-link\">Previous</span></li>";
-  }
-
-  for (var i = 1; i <= total; i++) {
-    if (Number(page.currentPage) === i) {
-      str += "<li class=\"page-item active\"><a class='page-link' href='#' data-page=\"".concat(i, "\">").concat(i, "</a></li>");
-    } else {
-      str += "<li class=\"page-item\"><a class='page-link' href='#' data-page=\"".concat(i, "\">").concat(i, "</a></li>");
-    }
-  }
-
-  ;
-
-  if (page.hasNext) {
-    str += "<li class=\"page-item\"><a class='page-link' href='#' data-page=\"".concat(Number(page.currentPage) + 1, "\">Next</a></li>");
-  } else {
-    str += "<li class=\"page-item disabled\"><span class=\"page-link\">Next</span></li>";
-  }
-
-  pageid.innerHTML = str;
-}
-
-function switchPage(e) {
-  e.preventDefault();
-
-  if (e.target.nodeName !== 'A') {
-    return;
-  }
-
-  var page = e.target.dataset.page;
-  pagination(jsonData, page);
-}
-
-pageid.addEventListener('click', switchPage);
 //# sourceMappingURL=all.js.map
